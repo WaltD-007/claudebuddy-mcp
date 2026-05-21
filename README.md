@@ -1,12 +1,36 @@
 # @claudebuddy/mcp
 
-The ClaudeBuddy MCP companion. Brings your cross-surface Claude session
-library into **Claude Code** and the **Claude Desktop app**.
+## What is this?
 
-It's a **recall + organise** layer — it does not (and cannot) re-open a
-past Desktop session, because no such API exists. What it does: find,
-organise into folders, and surface the full transcript of any past
-Claude session from any surface, so you never lose a thread.
+Every chat you have with Claude — in Claude Code or the Claude Desktop
+app — is saved as a file on your machine, but you can't easily search
+old ones, organise them, or pull an old chat's context into a new one.
+Once a chat ends, its thinking is stranded.
+
+This tool fixes that. After you wire it in once (instructions below),
+you can ask Claude itself, in any new chat, things like:
+
+> *Show me my recent sessions.*
+> *Put that one in a folder called "ProjectX".*
+> *Recall what we decided in last week's planning session and continue from there.*
+
+Claude reads the request, this tool runs quietly in the background,
+and the answer appears in the chat. There's no separate window or
+panel — **the interface is the conversation**.
+
+You need Claude Code or Claude Desktop already installed for any of
+this to be useful.
+
+## How it works
+
+A small local program (this repo) exposes four "tools" to Claude via
+the [Model Context Protocol](https://modelcontextprotocol.io):
+list / tag / untag / recall. Claude calls those tools on your behalf
+when you ask. It's a **recall + organise** layer — it does not (and
+cannot) re-open a past Desktop session, because no such API exists.
+What it does: find, organise into folders, and surface the full
+transcript of any past Claude session from any surface, so you never
+lose a thread.
 
 ## What it exposes
 
