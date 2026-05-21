@@ -1,0 +1,40 @@
+{
+  "name": "@claudebuddy/mcp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "ClaudeBuddy MCP companion — your cross-surface Claude session library in Claude Code and Claude Desktop",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/WaltD-007/claudebuddy-mcp.git"
+  },
+  "homepage": "https://github.com/WaltD-007/claudebuddy-mcp#readme",
+  "bugs": {
+    "url": "https://github.com/WaltD-007/claudebuddy-mcp/issues"
+  },
+  "type": "module",
+  "bin": {
+    "claudebuddy-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "dev": "tsc -p tsconfig.json --watch"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^4.4.3"
+  },
+  "devDependencies": {
+    "@types/node": "^25.7.0",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.6"
+  }
+}
