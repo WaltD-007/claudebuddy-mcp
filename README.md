@@ -27,18 +27,29 @@ Claude session from any surface, so you never lose a thread.
 | `claudebuddy://folders` | Folder names with session counts (JSON). |
 
 Sessions are discovered from `~/.claude/projects/<cwd>/<id>.jsonl` —
-the store Claude Desktop and Claude Code CLI share. Folder tags persist
-to `~/.claudebuddy/tags.json` (later: synced via your ClaudeBuddy
-account so tags made in the browser extension appear here too).
+the store Claude Desktop and Claude Code CLI share. Folder tags
+persist to `~/.claudebuddy/tags.json`.
+
+## Requirements
+
+- **Node.js ≥ 20**
+- macOS or Linux (the default session and tag paths use `~/...`;
+  Windows users will need to override both env vars below)
+- Claude Code or Claude Desktop installed (so there's a
+  `~/.claude/projects/` directory to discover sessions from)
 
 ## Install
 
-> Pre-publish: install from the built `dist/`. Once published the
-> command becomes `npx -y @claudebuddy/mcp`.
+Not yet published to npm — install from source:
 
 ```bash
-cd mcp && npm install && npm run build
+git clone https://github.com/WaltD-007/claudebuddy-mcp.git
+cd claudebuddy-mcp
+npm install
+npm run build
 ```
+
+This produces `dist/index.js`, which is what you point Claude at.
 
 ### Claude Code
 
@@ -49,7 +60,7 @@ Add to `~/.claude/mcp_servers.json` (or run `claude mcp add`):
   "mcpServers": {
     "claudebuddy": {
       "command": "node",
-      "args": ["/ABSOLUTE/PATH/TO/claudemate/mcp/dist/index.js"]
+      "args": ["/ABSOLUTE/PATH/TO/claudebuddy-mcp/dist/index.js"]
     }
   }
 }
@@ -82,9 +93,8 @@ Env vars (optional; sensible defaults):
 ## Privacy
 
 The server reads session files **on your machine only**. Nothing is
-transmitted anywhere by this process. (Cloud sync of *folder tags*
-between this and the browser extension is a separate, opt-in,
-Pro-tier feature — and it syncs tags, never transcript content.)
+transmitted anywhere by this process. Folder tags are stored locally
+at `~/.claudebuddy/tags.json`.
 
 ## Development
 
@@ -95,5 +105,6 @@ npm run build
 npm run dev       # tsc --watch
 ```
 
-Architecture + roadmap: `../docs/architecture.md` §9.
-Why it's recall-not-reopen: `../docs/mcp-spike-findings.md`.
+## License
+
+MIT — see [LICENSE](./LICENSE).
